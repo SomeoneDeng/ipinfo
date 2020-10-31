@@ -20,6 +20,8 @@ func (info *Info) ipInfo(w http.ResponseWriter, r *http.Request) {
 func (info *Info) report(w http.ResponseWriter, r *http.Request) {
 	info.Ip = strings.Split(r.RemoteAddr, ":")[0]
 	info.UpdatedTime = time.Now().Unix()
+	data, _ := json.Marshal(info)
+	w.Write(data)
 }
 
 func main() {
